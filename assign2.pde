@@ -1,7 +1,7 @@
 PImage backgroundImg1, backgroundImg2, fighter, hp, treasure, enemy, spTreasure;
 PImage st1, st2, end1, end2;
 int x,y,a,b,m,n,w, c, d, o, p;
-float fighterSpeed = 3;
+float fighterSpeed = 4;
 boolean up = false;
 boolean down = false;
 boolean left = false;
@@ -110,7 +110,7 @@ void draw() {
     }
   if (c+51 >= o && c <= o+41 && d+51 >= p && d <= p+41){
     fighterSpeed += 1; 
-    if (fighterSpeed >= 6){fighterSpeed = 6;}
+    if (fighterSpeed >= 7){fighterSpeed = 7;}
     o = floor(random(590));
     p = floor(random(390));
     }
@@ -129,7 +129,7 @@ void draw() {
         w = 40;
         c = 590;
         d = 220;
-        fighterSpeed = 3;
+        fighterSpeed = 4;
         m = floor(random(590));
         n = floor(random(390));
         o = floor(random(590));
