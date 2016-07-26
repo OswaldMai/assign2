@@ -1,6 +1,6 @@
 PImage backgroundImg1, backgroundImg2, fighter, hp, treasure, enemy, spTreasure;
 PImage st1, st2, end1, end2;
-int x,y,a,b,m,n,w, c, d, o, p;
+int x,y,a,b,m,n,w,c,d,o,p;
 float fighterSpeed = 4;
 boolean up = false;
 boolean down = false;
@@ -46,99 +46,91 @@ void draw() {
     if (mouseY > height*22.8/29 && mouseY < height*25/29 && mouseX > width*5/16 && mouseX < width*11.4/16){
       if (mousePressed){
         gameState = RUN;
-      }else{
-      image(st1, 0, 0);
-      }
+      }else{image(st1, 0, 0);}
     }
     break;
 
-  case RUN:
-  //background
-  if (x > width){
-  x = -640;
-  }
-  if (y > width){
-  y = -640;
-  }
-  image(backgroundImg1, x, 0);
-  image(backgroundImg2, y, 0);
-  x = (x+1);
-  y = (y+1);
+    case RUN:
+    //background
+    if (x > width){x = -640;}
+    if (y > width){y = -640;}
+    image(backgroundImg1, x, 0);
+    image(backgroundImg2, y, 0);
+    x = (x+1);
+    y = (y+1);
   
-  //treasure
-  image(treasure,m,n);
-  image(spTreasure,o,p);
+    //treasure
+    image(treasure,m,n);
+    image(spTreasure,o,p);
 
-   //enemy
-  image(enemy,a,b);
-  a = a+3;
-  if (b >d-45){b =b-3;}
-  if (b <d+45){b =b+3;}
-  if (a >640){b = floor(random(420));}
-  a %=640;
+    //enemy
+    image(enemy,a,b);
+    a = a+3;
+    if (b >d-45){b =b-3;}
+    if (b <d+45){b =b+3;}
+    if (a >640){b = floor(random(420));}
+    a %=640;
   
-  //fighter
-  image(fighter, c, d);
+    //fighter
+    image(fighter, c, d);
   
-  //fighter control 1
-  if (up){d -= fighterSpeed;}
-  if (down){d += fighterSpeed;}
-  if (left){c -= fighterSpeed;}
-  if (right){c += fighterSpeed;}
+    //fighter control 1
+    if (up){d -= fighterSpeed;}
+    if (down){d += fighterSpeed;}
+    if (left){c -= fighterSpeed;}
+    if (right){c += fighterSpeed;}
   
-  //fighter boundary detection
-  if (c > 590){c = 590;}
-  if (c < 0){c = 0;}
-  if (d > 430){d = 430;}
-  if (d < 0){d = 0;}
+    //fighter boundary detection
+    if (c > 590){c = 590;}
+    if (c < 0){c = 0;}
+    if (d > 430){d = 430;}
+    if (d < 0){d = 0;}
   
-  //HP
-  fill(255,0,0);
-  rect(5,3,w,20);
-  image(hp,0,0);
+    //HP
+    fill(255,0,0);
+    rect(5,3,w,20);
+    image(hp,0,0);
   
-  //enemy's and treasures' effects
-  if (c+51 >= a && c <= a+61 && d+51 >= b && d <= b+61){
-    w -= 40;
-    a = 0;
-    b = floor(random(420));
-    }
-  if (c+51 >= m && c <= m+41 && d+51 >= n && d <= n+41){
-    w +=20;
-    m = floor(random(590));
-    n = floor(random(390));
-    }
-  if (c+51 >= o && c <= o+41 && d+51 >= p && d <= p+41){
-    fighterSpeed += 1; 
-    if (fighterSpeed >= 7){fighterSpeed = 7;}
-    o = floor(random(590));
-    p = floor(random(390));
-    }
+    //enemy's and treasures' effects
+    if (c+51 >= a && c <= a+61 && d+51 >= b && d <= b+61){
+      w -= 40;
+      a = 0;
+      b = floor(random(420));
+      }
+    if (c+51 >= m && c <= m+41 && d+51 >= n && d <= n+41){
+      w +=20;
+      m = floor(random(590));
+      n = floor(random(390));
+      }
+    if (c+51 >= o && c <= o+41 && d+51 >= p && d <= p+41){
+      fighterSpeed += 1; 
+      if (fighterSpeed >= 7){fighterSpeed = 7;}
+      o = floor(random(590));
+      p = floor(random(390));
+      }
     
-  //hp's maximum and minimum
-  if (w >= 200){w = 200;} 
-  if (w <= 0){w=0;}
+    //hp's maximum and minimum
+    if (w >= 200){w = 200;} 
+    if (w <= 0){w=0;}
   
-  if (w <= 0){gameState = LOSE;}
-  break;
+    if (w <= 0){gameState = LOSE;}
+    break;
   
-  case LOSE:
+    case LOSE:
       image(end2, 0, 0);
       if (mouseY > height*21/33 && mouseY < height*24/33 && mouseX > width*0.95/3 && mouseX < width*2.05/3){
-      if (mousePressed){
-        w = 40;
-        c = 590;
-        d = 220;
-        fighterSpeed = 4;
-        m = floor(random(590));
-        n = floor(random(390));
-        o = floor(random(590));
-        p = floor(random(390));
-        gameState = RUN;
-      }else{
-      image(end1, 0, 0);
+        if (mousePressed){
+          w = 40;
+          c = 590;
+          d = 220;
+          fighterSpeed = 4;
+          m = floor(random(590));
+          n = floor(random(390));
+          o = floor(random(590));
+          p = floor(random(390));
+          gameState = RUN;
+        }else{image(end1, 0, 0);}
       }
-    }
     break;
   }
 }
